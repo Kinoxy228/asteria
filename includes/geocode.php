@@ -12,9 +12,6 @@ const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
  */
 function geocodePlace(string $city, ?string &$error = null): ?array
 {
-    if (getenv('ASTERIA_GEO_MOCK')) { // только для разработки без доступа в интернет
-        return ['name' => $city, 'country' => 'Россия', 'region' => '', 'latitude' => 55.75222, 'longitude' => 37.61556, 'timezone' => 'Europe/Moscow', 'source' => 'mock'];
-    }
     $query = http_build_query([
         'name' => $city,
         'count' => 1,

@@ -49,22 +49,15 @@ const FOREIGN_KEYS = [
 function tableColumns(PDO $pdo, string $table): array
 {
     $cols = [];
-    if ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql') {
-        foreach ($pdo->query("SHOW COLUMNS FROM `$table`") as $c) {
-            preg_match_all("/'([^']*)'/", $c['Type'], $m);
-            $cols[] = [
-                'name' => $c['Field'],
-                'type' => strtolower(preg_replace('/ COLLATE \S+/i', '', $c['Type'])),
-                'required' => $c['Null'] === 'NO' && $c['Default'] === null && $c['Extra'] !== 'auto_increment',
-                'pk' => $c['Key'] === 'PRI',
-                'enum' => str_starts_with(strtolower($c['Type']), 'enum') ? $m[1] : [],
-            ];
-        }
-    } else { // SQLite — используется только при разработке
-        foreach ($pdo->query("PRAGMA table_info($table)") as $c) {
-            $cols[] = ['name' => $c['name'], 'type' => strtolower($c['type']), 'required' => $c['notnull'] && $c['dflt_value'] === null && !$c['pk'],
-                       'pk' => (bool)$c['pk'], 'enum' => []];
-        }
+    foreach ($pdo->query("SHOW COLUMNS FROM `$table`") as $c) {
+        preg_match_all("/'([^']*)'/", $c['Type'], $m);
+        $cols[] = [
+            'name' => $c['Field'],
+            'type' => strtolower($c['Type']),
+            'required' => $c['Null'] === 'NO' && $c['Default'] === null && $c['Extra'] !== 'auto_increment',
+            'pk' => $c['Key'] === 'PRI',
+            'enum' => str_starts_with(strtolower($c['Type']), 'enum') ? $m[1] : [],
+        ];
     }
     return $cols;
 }
