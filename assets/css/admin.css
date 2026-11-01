@@ -1,0 +1,42 @@
+/* ===== Административная панель ===== */
+body.admin { flex-direction: row; }
+.admin-side { width: 270px; flex-shrink: 0; min-height: 100vh; background: #0B0A1C; border-right: 1px solid var(--line); padding: 24px 16px; display: flex; flex-direction: column; gap: 2px; position: sticky; top: 0; align-self: flex-start; height: 100vh; overflow-y: auto; }
+.admin-side .logo { margin: 0 8px 20px; font-size: 24px; }
+.admin-side a:not(.logo) { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 10px; color: var(--muted); font-size: 14px; }
+.admin-side a:not(.logo):hover { color: var(--text); background: rgba(255, 255, 255, .04); }
+.admin-side a.active { background: var(--violet-soft); color: var(--text); }
+.admin-side a .ico { color: var(--gold); }
+.side-label { margin: 18px 12px 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #6E68A0; font-weight: 700; }
+.side-bottom { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
+.admin-main { flex: 1; padding: 28px 36px; min-width: 0; }
+.admin-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.admin-top h1 { font-size: 30px; margin: 0; }
+.admin-h2 { font-size: 22px; margin: 32px 0 14px; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; color: var(--muted); font-size: 14px; }
+.stat span { display: block; font: 700 34px var(--font-head); color: var(--text); }
+.stat.warn span { color: var(--gold); }
+.tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.tile { display: flex; gap: 14px; align-items: center; padding: 18px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+.tile:hover { border-color: var(--gold); }
+.tile-ico { width: 32px; height: 32px; color: var(--gold); }
+.tile-view .tile-ico { color: var(--violet); }
+.admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 16px; }
+.admin-toolbar .muted { display: flex; gap: 8px; align-items: center; }
+.view-filter { display: flex; gap: 10px; align-items: center; }
+.view-filter label { margin: 0; }
+.view-filter select { width: auto; padding: 8px 14px; }
+.table-wrap.card { padding: 6px 10px; }
+.admin-table td { font-size: 13px; max-width: 320px; white-space: nowrap; }
+.admin-table td.long { white-space: normal; min-width: 240px; }
+.admin-table .actions { display: flex; gap: 6px; white-space: nowrap; }
+.admin-table .icon-btn { width: 32px; height: 32px; }
+.fk { display: inline-block; min-width: 22px; padding: 1px 6px; border-radius: 6px; background: var(--violet-soft); color: #CFC6FF; font-size: 12px; text-align: center; }
+.pagination { display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+.pagination a { min-width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+.pagination a.active { background: var(--gold); color: #1A1433; border-color: var(--gold); font-weight: 700; }
+.admin-form { max-width: 980px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.form-grid .wide { grid-column: 1 / -1; }
+.form-grid span .muted { font-weight: 400; }
+.form-actions { display: flex; gap: 12px; margin-top: 8px; }
